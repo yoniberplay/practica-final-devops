@@ -1,0 +1,30 @@
+name: deploy
+
+on:
+  push:
+    branches: ["dev"]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Estableciendo version mas reciente de node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "16"
+
+      - name: Instalando dependencias
+        run: npm install
+
+      - name: Realizando pruebas unitarias
+        run: npm test
+
+      # - name: Installing surge
+      #   run: npm install --global surge
+
+      # - name: Deploy to Surge
+      #   run: surge --project ./ --token ${{ secrets.SOURGE_KEY }} --domain https://envious-brother.surge.sh/
