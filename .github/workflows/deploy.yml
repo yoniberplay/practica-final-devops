@@ -12,6 +12,11 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
+      - name: Estableciendo version mas reciente de node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "16"
+
       - name: Instalando dependencias
         run: npm install
 
